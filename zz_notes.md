@@ -29,5 +29,10 @@ qmk compile -kb sofle_keyhive/rev2 -km keyhive_via
 
 
 **--> not working, see ERRORS, nicht mehr up-to-date --> andere sofle testen und anpassen ?**
-    --> qmk compile -kb sofle/rev1 -km default 
-            **is working !!! HIER WEITER !!!**
+    --> qmk compile -kb sofle/rev1 -km default *is working, DONT use*
+    .
+    **rgb_default exists :) TRY:**
+    --> qmk compile -kb sofle/rev1 -km rgb_default
+    OR (probalbly better)
+    --> qmk compile -kb sofle/keyhive -km rgb_default
+    (both compiling fine)
