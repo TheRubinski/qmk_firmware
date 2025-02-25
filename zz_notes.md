@@ -6,10 +6,10 @@ BUILD GUIDE HERE: https://github.com/keyhive/build_guides/blob/master/docs/keybo
 
 
 
-Firmware can be found here in QMK fork:
+# Firmware QMK: fork
 https://github.com/keyhive/qmk_firmware **does not work, old**
-    --> fork original https://github.com/qmk/qmk_firmware **this repo**
-        --> copied keybord to sofle_keyhive, deleted all non-sofle
+fork original https://github.com/qmk/qmk_firmware **use this repo**
+        --> copied keybord to sofle_keyhive (from keyhive/qmk_firmware ?? ...), deleted all non-sofle 
          
 You will want to use rev2 and keyhive_via
     --> COPIED TO THIS REPO (sofle_keyhive)
@@ -22,17 +22,44 @@ You will want to use rev2 and keyhive_via
             --> **README** in this folder for Sofle for **flash**
             - **RGB_UNDERGLOW** in config.h
             
-    
+            
 
-The following command should work:
+# Compile in QMK MSYS
+whitch to use?
+qmk compile -kb sofle/rev1 -km rgb_default
+    --> compiling fine
+qmk compile -kb sofle/keyhive -km rgb_default
+    --> compiling fine
+
+
+dont use:
 qmk compile -kb sofle_keyhive/rev2 -km keyhive_via
+    --> not working, see ERRORS, nicht mehr up-to-date 
+qmk compile -kb sofle/rev1 -km default 
+    --> working, DONT use
 
 
-**--> not working, see ERRORS, nicht mehr up-to-date --> andere sofle testen und anpassen ?**
-    --> qmk compile -kb sofle/rev1 -km default *is working, DONT use*
-    .
-    **rgb_default exists :) TRY:**
-    --> qmk compile -kb sofle/rev1 -km rgb_default
-    OR (probalbly better)
-    --> qmk compile -kb sofle/keyhive -km rgb_default
-    (both compiling fine)
+
+
+# Flash 
+https://docs.qmk.fm/newbs_flashing
+- **indicator working, party, party**
+-> connect7bridge both reset shortly and quickly klick flash in QMK Toolbox, else you will get a device disconnected. Probably because PCB will leave Bootloader Mode (DFU)
+
+- used hex: C:\Users\ruben\OneDrive\qmk_firmware\sofle_keyhive_rgb_default.hex 
+- MCU is: ATmega32U4
+    -> works, but wrong hand ... 
+
+- used hex: C:\Users\ruben\OneDrive\qmk_firmware\sofle_rev1_rgb_default.hex
+- MCU is: ATmega32U4
+    -> also works, but correct hand ... 
+    
+**YOU MAY HAVE TO ADAPT LED NUMBER IN CODE !!!**
+    -> config.h
+        -> RGBLIGHT_LED_COUNT 35 -> 36
+        -> RGBLED_SPLIT { 35, 35 } -> { 36, 36 }
+        
+        
+**maybe follow readme.md in sofle folder ...**
+
+**Problems? -> Check out QMK Discord**
